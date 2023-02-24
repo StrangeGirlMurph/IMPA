@@ -5,7 +5,7 @@ import {
 	SlashCommandSubcommandsOnlyBuilder,
 } from "discord.js";
 import { hasAdminPerms } from "../util/misc/permissions";
-import { colorPrompt, jamPrompt, pronounPrompt, timezonePrompt } from "../util/roles/rolesPrompts";
+import { majorPrompt, pronounPrompt, semesterPrompt } from "../util/roles/rolesPrompts";
 import { deleteRoles } from "../util/roles/rolesUtil";
 
 class RoleCommand extends Command {
@@ -28,15 +28,12 @@ class RoleCommand extends Command {
 		if (subcommand === "pronouns") {
 			await interaction.deferReply();
 			await pronounPrompt(interaction);
-		} else if (subcommand === "colors") {
+		} else if (subcommand === "semester") {
 			await interaction.deferReply();
-			await colorPrompt(interaction);
-		} else if (subcommand === "timezones") {
+			await semesterPrompt(interaction);
+		} else if (subcommand === "major") {
 			await interaction.deferReply();
-			await timezonePrompt(interaction);
-		} else if (subcommand === "jam") {
-			await interaction.deferReply();
-			await jamPrompt(interaction);
+			await majorPrompt(interaction);
 		} else if (subcommand === "delete") {
 			await interaction.deferReply({ ephemeral: true });
 			await deleteRoles(interaction);
@@ -55,22 +52,9 @@ class RoleCommand extends Command {
 						option.setName("pronouns").setDescription("Creates the pronoun role prompt.")
 					)
 					.addSubcommand((option) =>
-						option
-							.setName("colors")
-							.setDescription("Creates the color role prompt.")
-							.addIntegerOption((option) =>
-								option
-									.setName("columns")
-									.setDescription("The number of columns to use for the color preview. (default: 2)")
-									.setRequired(false)
-									.setMinValue(1)
-									.setMaxValue(4)
-							)
+						option.setName("semester").setDescription("Creates the semester role prompt.")
 					)
-					.addSubcommand((option) =>
-						option.setName("timezones").setDescription("Creates the timezone role prompt.")
-					)
-					.addSubcommand((option) => option.setName("jam").setDescription("Creates the jam role prompt."))
+					.addSubcommand((option) => option.setName("major").setDescription("Creates the major role prompt."))
 			)
 			.addSubcommand((option) =>
 				option

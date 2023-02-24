@@ -1,6 +1,5 @@
 import { AutocompleteInteraction } from "discord.js";
 import { DateTime, Duration } from "luxon";
-import { getTimezoneFromRole } from "./role";
 
 export async function autocompleteISOTime(interaction: AutocompleteInteraction) {
 	const focus = interaction.options.getFocused().toUpperCase();
@@ -15,10 +14,9 @@ export async function autocompleteISOTime(interaction: AutocompleteInteraction) 
 			response.push({ name: `[Invalid date ISO: ${focus}]`, value: focus });
 		}
 	} else {
-		const timezone = await getTimezoneFromRole(interaction.user.id, interaction.guild!);
 		const now = DateTime.now()
 			.set({ hour: DateTime.now().hour + 1, minute: 0, second: 0, millisecond: 0 })
-			.setZone(timezone || "UTC")
+			.setZone("UTC+1")
 			.toISO();
 		response.push({ name: now, value: now });
 	}

@@ -2,16 +2,14 @@ import ReminderCommand from "../commands/ReminderCommand";
 import { ActivityType, Client } from "discord.js";
 import { ctx } from "../ctx";
 import { logger } from "../logger";
-import CodingJamsCommand from "../commands/CodingJamsCommand";
 import { validateConfigParameters } from "../config-validate";
-import BirthdayCommand from "../commands/BirthdayCommand";
 
 export default async function ready(client: Client) {
 	const guild = client.guilds.cache.get(ctx.defaultGuild)!;
 
 	if (client.guilds.cache.size > 1)
 		logger.warn(
-			"This bot is in more than one guild... Remember that the bot will only work in one guild which is given in the .env file!"
+			"This bot is in more than one guild... Remember that the bot will only work in one guild which is given in the '.env' file!"
 		);
 
 	logger.info(`Successfully logged in as ${client.user?.username}.`);
@@ -28,14 +26,8 @@ export default async function ready(client: Client) {
 		ctx.defaultGuild
 	);
 
-	logger.info("Starting coding-jam event scheduler...");
-	CodingJamsCommand.startScheduler(client);
-
 	logger.info("Starting reminder scheduler...");
 	ReminderCommand.startScheduler(client);
-
-	logger.info("Starting birthday scheduler...");
-	BirthdayCommand.startScheduler(client);
 
 	if (!guild.systemChannel) {
 		logger.error(

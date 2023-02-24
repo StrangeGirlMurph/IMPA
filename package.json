@@ -1,7 +1,7 @@
 {
-	"name": "jambo",
+	"name": "impa",
 	"version": "1.0.0",
-	"description": "A bot to manage a whole game jam server from a fully functional poll-system to managing color roles.",
+	"description": "A bot to manage an university discord server.",
 	"main": "dist/start.js",
 	"private": "true",
 	"type": "module",
@@ -14,25 +14,16 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Cowoding-Jams/Jambo.git"
+		"url": "git+https://github.com/StrangeGirlMurph/IMPA.git"
 	},
 	"contributors": [
-		"Leonie - KommentatorForAll",
-		"Lucy - BlackDemonFire",
-		"Antti - Chicken",
-		"WilsonTheWolf (https://shorty.systems/)",
-		"Murph - StrangeGirlMurph",
-		"Amber - UselessAmber",
-		"Floschy - flloschy",
-		"Riley - Exonorid",
-		"Kryal - Da-Real-Kryall",
-		"Ian - IanToujou"
+		"Murph - StrangeGirlMurph"
 	],
 	"license": "SEE LICENSE IN LICENSE",
 	"bugs": {
-		"url": "https://github.com/Cowoding-Jams/Jambo/issues"
+		"url": "https://github.com/StrangeGirlMurph/IMPA/issues"
 	},
-	"homepage": "https://github.com/Cowoding-Jams/Jambo",
+	"homepage": "https://github.com/StrangeGirlMurph/IMPA",
 	"devDependencies": {
 		"@types/luxon": "^3.2.0",
 		"@types/node-cron": "^3.0.7",
