@@ -8,14 +8,14 @@ import {
 	EmbedBuilder,
 	StringSelectMenuBuilder,
 } from "discord.js";
-import { addEmbedFooter } from "../misc/embeds";
+import { addEmbedColor } from "../misc/embeds";
 import { bringIntoButtonGrid, setUpRoles } from "./rolesUtil";
 
 export async function pronounPrompt(interaction: ChatInputCommandInteraction): Promise<void> {
 	const prompt: EmbedBuilder = new EmbedBuilder()
-		.setTitle("Pronoun roles 🏳‍⚧️⚧️")
+		.setTitle("Pronomen Rollen 🏳‍⚧️⚧️")
 		.setDescription(
-			"Select the pronouns you want others to use when referring to you :)\nIf you don't understand why: https://pronouns.org/what-and-why"
+			"Wähle die Pronomen, mit denen du angesprochen werden möchtest :)\nFalls du nicht verstehst, warum: https://pronouns.org/what-and-why"
 		);
 
 	const actionRows: ActionRowBuilder<ButtonBuilder>[] = [];
@@ -24,10 +24,7 @@ export async function pronounPrompt(interaction: ChatInputCommandInteraction): P
 		actionRows.push(new ActionRowBuilder());
 		for (const role of row) {
 			actionRows[actionRows.length - 1].addComponents(
-				new ButtonBuilder()
-					.setCustomId(`roles.${role[0]}`)
-					.setLabel(role[0])
-					.setStyle(actionRows.length == 1 ? ButtonStyle.Primary : ButtonStyle.Secondary)
+				new ButtonBuilder().setCustomId(`roles.${role[0]}`).setLabel(role[0]).setStyle(ButtonStyle.Secondary)
 			);
 			if (role[1]) {
 				actionRows[actionRows.length - 1].components[
@@ -46,7 +43,7 @@ export async function pronounPrompt(interaction: ChatInputCommandInteraction): P
 		)
 	) {
 		await interaction.editReply({
-			embeds: [addEmbedFooter(prompt)],
+			embeds: [addEmbedColor(prompt)],
 			components: actionRows,
 		});
 	} else {
@@ -57,8 +54,8 @@ export async function pronounPrompt(interaction: ChatInputCommandInteraction): P
 
 export async function majorPrompt(interaction: ChatInputCommandInteraction): Promise<void> {
 	const prompt: EmbedBuilder = new EmbedBuilder()
-		.setTitle("Major roles 📚")
-		.setDescription("Select your major (Studiengang) or affiliation with the HU.");
+		.setTitle("Studiengang Rollen 📚")
+		.setDescription("Wähle deinen Studiengang aus.");
 
 	const actionRows: ActionRowBuilder<ButtonBuilder>[] = [];
 	const roles = bringIntoButtonGrid(config.majorRoles.map((r) => [r]));
@@ -80,7 +77,7 @@ export async function majorPrompt(interaction: ChatInputCommandInteraction): Pro
 		)
 	) {
 		await interaction.editReply({
-			embeds: [addEmbedFooter(prompt)],
+			embeds: [addEmbedColor(prompt)],
 			components: actionRows,
 		});
 	} else {
@@ -89,10 +86,32 @@ export async function majorPrompt(interaction: ChatInputCommandInteraction): Pro
 	}
 }
 
+export async function fachiniPrompt(interaction: ChatInputCommandInteraction): Promise<void> {
+	const prompt: EmbedBuilder = new EmbedBuilder()
+		.setTitle("Fachini Rolle 🌿")
+		.setDescription(
+			"Falls du dich für die IMP Fachschaftsinitiative interessierst, wirst du mit der Rolle über alle Sitzungen und Weiteres benachricht."
+		);
+
+	const actionRows: ActionRowBuilder<ButtonBuilder>[] = [
+		new ActionRowBuilder<ButtonBuilder>().addComponents(
+			new ButtonBuilder()
+				.setCustomId(`roles.fsi-interessiert`)
+				.setLabel("fsi-interessiert")
+				.setStyle(ButtonStyle.Secondary)
+		),
+	];
+
+	await interaction.editReply({
+		embeds: [addEmbedColor(prompt)],
+		components: actionRows,
+	});
+}
+
 export async function semesterPrompt(interaction: ChatInputCommandInteraction): Promise<void> {
 	const prompt: EmbedBuilder = new EmbedBuilder()
-		.setTitle("Semester roles 🌃")
-		.setDescription("Select the semester you began your studies at the HU.");
+		.setTitle("Semester Rollen 🌃")
+		.setDescription("Wähle das Semester, seit dem du an der HU studierst.");
 
 	const actionRow: ActionRowBuilder<StringSelectMenuBuilder> =
 		new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
@@ -112,7 +131,7 @@ export async function semesterPrompt(interaction: ChatInputCommandInteraction): 
 			"- EndSemesterRoles -"
 		)
 	) {
-		await interaction.editReply({ embeds: [addEmbedFooter(prompt)], components: [actionRow] });
+		await interaction.editReply({ embeds: [addEmbedColor(prompt)], components: [actionRow] });
 	} else {
 		await interaction.editReply({ content: "Couldn't set up the roles..." });
 		logger.error("Failed to set up semester roles.");

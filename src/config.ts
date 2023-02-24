@@ -20,13 +20,13 @@ export const config: BotConfig = {
 
 	// --- Roles ---
 	pronounRoles: [
-		["she/her", "541000113410015245"],
-		["he/him", "590631286666952704"],
+		["sie/ihr", "541000113410015245"],
+		["er/ihm", "590631286666952704"],
 		["they/them", "590660390187302912"],
 		["xier/xies", "590660390187302912"],
-		["any pronouns", null],
-		["no pronouns", null],
-		["ask me (pronouns)", null],
+		["alle Pronomen", null],
+		["keine Pronomen", null],
+		["frag mich (Pronomen)", null],
 	],
 	majorRoles: ["IMP", "Informatik", "Mathematik", "Physik", "HU Mitarbeiter*in"],
 	semesterRoles: [

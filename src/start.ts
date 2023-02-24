@@ -33,7 +33,7 @@ process.on("SIGTERM", shutdown);
 process.on("SIGINT", shutdown);
 process.on("uncaughtException", shutdown);
 
-Settings.defaultZone = "utc";
+Settings.defaultZone = "utc+1";
 
 logger.debug("Loading context...");
 ctx.update(

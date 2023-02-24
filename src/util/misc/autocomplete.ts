@@ -16,7 +16,6 @@ export async function autocompleteISOTime(interaction: AutocompleteInteraction) 
 	} else {
 		const now = DateTime.now()
 			.set({ hour: DateTime.now().hour + 1, minute: 0, second: 0, millisecond: 0 })
-			.setZone("UTC+1")
 			.toISO();
 		response.push({ name: now, value: now });
 	}

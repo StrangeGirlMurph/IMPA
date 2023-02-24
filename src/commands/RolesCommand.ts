@@ -5,7 +5,7 @@ import {
 	SlashCommandSubcommandsOnlyBuilder,
 } from "discord.js";
 import { hasAdminPerms } from "../util/misc/permissions";
-import { majorPrompt, pronounPrompt, semesterPrompt } from "../util/roles/rolesPrompts";
+import { fachiniPrompt, majorPrompt, pronounPrompt, semesterPrompt } from "../util/roles/rolesPrompts";
 import { deleteRoles } from "../util/roles/rolesUtil";
 
 class RoleCommand extends Command {
@@ -34,6 +34,9 @@ class RoleCommand extends Command {
 		} else if (subcommand === "major") {
 			await interaction.deferReply();
 			await majorPrompt(interaction);
+		} else if (subcommand === "fachini") {
+			await interaction.deferReply();
+			await fachiniPrompt(interaction);
 		} else if (subcommand === "delete") {
 			await interaction.deferReply({ ephemeral: true });
 			await deleteRoles(interaction);
@@ -55,6 +58,9 @@ class RoleCommand extends Command {
 						option.setName("semester").setDescription("Creates the semester role prompt.")
 					)
 					.addSubcommand((option) => option.setName("major").setDescription("Creates the major role prompt."))
+					.addSubcommand((option) =>
+						option.setName("fachini").setDescription("Creates the fachini role prompt.")
+					)
 			)
 			.addSubcommand((option) =>
 				option
