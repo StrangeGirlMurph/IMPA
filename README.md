@@ -8,4 +8,4 @@ Made with love by: Me (Murphy) 🥰
 
 ## License
 
-This project is licensed under the [Anti-Capitalist Software License](https://anticapitalist.software/). See [LICENSE](LICENSE).
+This project is licensed under the [Humane Software License](https://github.com/StrangeGirlMurph/The-Humane-Software-License). See [LICENSE](LICENSE).
