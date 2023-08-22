@@ -9,14 +9,14 @@ export async function autocompleteISOTime(interaction: AutocompleteInteraction) 
 	if (focus.length !== 0) {
 		const date = DateTime.fromISO(focus, { setZone: true });
 		if (date.isValid) {
-			response.push({ name: date.toISO(), value: date.toISO() });
+			response.push({ name: date.toISO()!, value: date.toISO()! });
 		} else {
 			response.push({ name: `[Invalid date ISO: ${focus}]`, value: focus });
 		}
 	} else {
 		const now = DateTime.now()
 			.set({ hour: DateTime.now().hour + 1, minute: 0, second: 0, millisecond: 0 })
-			.toISO();
+			.toISO()!;
 		response.push({ name: now, value: now });
 	}
 
@@ -31,12 +31,12 @@ export async function autocompleteISODuration(interaction: AutocompleteInteracti
 	if (focus.length !== 0) {
 		const duration = Duration.fromISO(focus);
 		if (duration.isValid) {
-			response.push({ name: duration.toISO(), value: duration.toISO() });
+			response.push({ name: duration.toISO()!, value: duration.toISO()! });
 		} else {
 			response.push({ name: `[Invalid duration ISO: ${focus}]`, value: focus });
 		}
 	} else {
-		const example = Duration.fromDurationLike({ days: 3, hours: 2 }).toISO();
+		const example = Duration.fromDurationLike({ days: 3, hours: 2 }).toISO()!;
 		response.push({ name: example, value: example });
 	}
 

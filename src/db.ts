@@ -9,7 +9,7 @@ export const reminderTimeoutCache = new Map<string, NodeJS.Timeout>();
 // key: unique id
 export const reminderDb = new Enmap<Reminder, InternalReminder>({
 	name: "reminder",
-	serializer: (data) => ({ ...data, timestamp: data.timestamp.toISO() }),
+	serializer: (data) => ({ ...data, timestamp: data.timestamp.toISO()! }),
 	deserializer: (data) => ({ ...data, timestamp: DateTime.fromISO(data.timestamp, { setZone: true }) }),
 });
 export interface Reminder {
@@ -36,7 +36,7 @@ activityTrackerBlacklistDb.ensure("general-game", []);
 // key: "[user id]-[game]"
 export const activityTrackerLogDb = new Enmap<ActivityLogEntry[], InternalActivityLogEntry[]>({
 	name: "trackerLog",
-	serializer: (data) => data.map((e) => ({ duration: e.duration.toISO(), date: e.date.toISO() })),
+	serializer: (data) => data.map((e) => ({ duration: e.duration.toISO()!, date: e.date.toISO()! })),
 	deserializer: (data) =>
 		data.map((e) => ({
 			duration: Duration.fromISO(e.duration),
