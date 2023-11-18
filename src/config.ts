@@ -52,7 +52,7 @@ export const config: BotConfig = {
 		"SoSe 2022",
 		"WiSe 2022/23",
 		"SoSe 2023",
-		"WiSe 2023/24"
+		"WiSe 2023/24",
 	],
 };
 
