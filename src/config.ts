@@ -30,7 +30,6 @@ export const config: BotConfig = {
 	],
 	majorRoles: ["IMP", "Informatik", "Mathematik", "Physik", "HU Mitarbeiter*in"],
 	semesterRoles: [
-		"WiSe 2012/13",
 		"SoSe 2013",
 		"WiSe 2013/14",
 		"SoSe 2014",
@@ -53,6 +52,7 @@ export const config: BotConfig = {
 		"WiSe 2022/23",
 		"SoSe 2023",
 		"WiSe 2023/24",
+		"SoSe 2024",
 	],
 };
 
